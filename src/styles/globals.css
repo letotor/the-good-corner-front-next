@@ -4,13 +4,28 @@
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
   background-color: #f5f5f5;
 }
 
 h1 {
   margin: 0;
+}
+
+/* cass */
+.m-1 {
+  margin: 1rem;
 }
 
 .header {
@@ -143,6 +158,15 @@ h1 {
   font-weight: bold;
 }
 
+.ad-card-main {
+  display: flex;
+  flex-direction: column;
+}
+.ad-card-category {
+  font-size: 14px;
+  color: #ffa41b;
+  padding: 0px 0px 6px 12px;
+}
 .ad-details-image-container {
   margin-inline-start: -24px;
   margin-inline-end: -24px;
