@@ -1,7 +1,31 @@
 import Link from 'next/link'
 import styles from './Header.module.css'
 import { Category } from './Category'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+
 const Header = (): React.ReactNode => {
+  const [categories, setCategories] = useState<Category[]>()
+  const BASE_URL = 'http://localhost:5000/api/category'
+  const getCategoriesFromAPI = async () => {
+    try {
+      const response = await axios.get(BASE_URL)
+      const data = response.data
+
+      setCategories(data)
+    } catch {
+      console.error('error lors de la recuperation des cat from server')
+    }
+  }
+
+  useEffect(() => {
+    console.log(categories)
+  }, [categories])
+
+  useEffect(() => {
+    getCategoriesFromAPI()
+  }, [])
+
   return (
     <header className={styles['heade']}>
       <div className="main-menu">
@@ -33,7 +57,18 @@ const Header = (): React.ReactNode => {
           <span className="desktop-long-label">Publier une annonce</span>
         </Link>
       </div>
-      <Category id={0} name={''} />
+      <nav className={styles['categories-navigation']}>
+        {categories?.map((category, index) => (
+          <>
+            <Category
+              key={category.name}
+              name={category.name}
+              id={category.id}
+            />{' '}
+            {index < categories.length - 1 && '•'}
+          </>
+        ))}
+      </nav>
     </header>
   )
 }

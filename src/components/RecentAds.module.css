@@ -3,3 +3,7 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
 }
+
+#selected {
+  margin-top: 10px;
+}
