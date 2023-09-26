@@ -1,0 +1,30 @@
+.categories-navigation {
+  font-size: 12px;
+  font-weight: bold;
+  color: #666;
+  padding: 16px 10px 6px;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+.category-navigation-link {
+  text-decoration: unset;
+  color: inherit;
+}
+
+
+@media screen and (min-width: 720px) {
+  .mobile-short-label {
+    display: none;
+  }
+  .desktop-long-label {
+    display: initial;
+  }
+
+  .categories-navigation {
+    padding-top: 14px;
+    display: flex;
+    justify-content: space-between;
+  }
+ 
+}

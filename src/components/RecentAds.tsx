@@ -1,5 +1,7 @@
+import { Fragment } from "react";
 import { AdCardProps } from "./AdCard";
 import AdCard from "./AdCard";
+import styles from "./RecentAds.module.css";
 
 const RecentAds = (): React.ReactNode => {
   const ads: AdCardProps[] = [
@@ -42,18 +44,17 @@ const RecentAds = (): React.ReactNode => {
       imgUrl: "/images/vide-poche.webp",
       link: "/ads/vide-poche",
       price: 10,
-      // category: { id: 6, name: "Décoration" },
+      category: { id: 6, name: "Décoration" },
       title: "Botte",
     },
   ];
 
   return (
-    <>
+    <main className="main-content">
       <h2>Annonces récentes</h2>
-      <section className="recent-ads">
+      <section className={styles.recentAds}>
         {ads.map((ad) => (
           <AdCard
-            className="H"
             title={ad.title}
             category={ad.category}
             imgUrl={ad.imgUrl}
@@ -63,7 +64,7 @@ const RecentAds = (): React.ReactNode => {
           />
         ))}
       </section>
-    </>
+    </main>
   );
 };
 export default RecentAds;
