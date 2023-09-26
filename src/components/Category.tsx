@@ -1,79 +1,79 @@
-import Link from "next/link";
-import Image from "next/image";
-import "./Category.module.css";
-import React from "react";
+import Link from 'next/link'
+import Image from 'next/image'
+import styles from './Category.module.css'
+import React from 'react'
 
-export type Category = { id: number; name: string };
+export type Category = { id: number; name: string }
 
 export const Category = (category: Category): React.ReactNode => {
   const categories = [
     {
       id: 1,
-      name: "Ameublement",
+      name: 'Ameublement',
     },
     {
       id: 2,
-      name: "Électroménager",
+      name: 'Électroménager',
     },
     {
       id: 3,
-      name: "Photographie",
+      name: 'Photographie',
     },
     {
       id: 4,
-      name: "Informatique",
+      name: 'Informatique',
     },
     {
       id: 5,
-      name: "Téléphonie",
+      name: 'Téléphonie',
     },
     {
       id: 6,
-      name: "Vélos",
+      name: 'Vélos',
     },
     {
       id: 7,
-      name: "Véhicules",
+      name: 'Véhicules',
     },
     {
       id: 8,
-      name: "Sport",
+      name: 'Sport',
     },
     {
       id: 9,
-      name: "Habillement",
+      name: 'Habillement',
     },
     {
       id: 10,
-      name: "Bébé",
+      name: 'Bébé',
     },
     {
       id: 11,
-      name: "Outillage",
+      name: 'Outillage',
     },
     {
       id: 12,
-      name: "Services",
+      name: 'Services',
     },
     {
       id: 13,
-      name: "Vacances",
+      name: 'Vacances',
     },
-  ];
+  ]
 
   return (
-    <nav className="categories-navigation">
+    <nav className={styles['category-navifation']}>
       {categories?.map((category, index) => (
         <React.Fragment key={category.id}>
           <Link
             href={`/ad/${category.id}`} // Assurez-vous de remplacer "slug" par la propriété appropriée de votre objet de catégorie
-            className="category-navigation-link"
+            className={styles['category-navigation-link']}
           >
             {category.name}
           </Link>
-          {index < categories.length - 1 && " • "}
+          {index < categories.length - 1 && ' • '}
         </React.Fragment>
       ))}
     </nav>
-  );
-};
+  )
+}

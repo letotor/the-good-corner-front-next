@@ -12,7 +12,6 @@
   color: inherit;
 }
 
-
 @media screen and (min-width: 720px) {
   .mobile-short-label {
     display: none;
@@ -26,5 +25,4 @@
     display: flex;
     justify-content: space-between;
   }
- 
 }
