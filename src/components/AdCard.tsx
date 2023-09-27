@@ -28,6 +28,7 @@ const AdCard = ({
   price,
   link,
   category,
+  id,
 }: Partial<AdCardProps>): React.ReactNode => {
   const handleClick = () => {
     console.log('test')
@@ -35,7 +36,7 @@ const AdCard = ({
 
   return (
     <div className={styles['ad-card-container']}>
-      <Link className={styles['ad-card-link']} href={`ad/${category?.id}`}>
+      <Link className={styles['ad-card-link']} href={`ad/${id}`}>
         {picture?.includes('http') && (
           <Image
             className={styles['ad-card-image']}

@@ -7,6 +7,7 @@ import axios from 'axios'
 const Header = (): React.ReactNode => {
   const [categories, setCategories] = useState<Category[]>()
   const BASE_URL = 'http://localhost:5000/api/category'
+  const [error, setError] = useState(false)
   const getCategoriesFromAPI = async () => {
     try {
       const response = await axios.get(BASE_URL)
@@ -32,7 +33,7 @@ const Header = (): React.ReactNode => {
         <h1>
           <Link href="/" className="button logo link-button">
             <span className="mobile-short-label">TGC</span>
-            <span className="desktop-long-label">THE GOOD CORNER</span>
+            <span className="desktop-long-label">THE GOO'D CORNER</span>
           </Link>
         </h1>
         <form className="text-field-with-button">
@@ -52,7 +53,7 @@ const Header = (): React.ReactNode => {
             </svg>
           </button>
         </form>
-        <Link href="/post-ad" className="button link-button">
+        <Link href="/ad/new" className="button link-button">
           <span className="mobile-short-label">Publier</span>
           <span className="desktop-long-label">Publier une annonce</span>
         </Link>
