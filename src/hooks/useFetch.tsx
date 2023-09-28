@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+export type Category = { id: number; name: string }
 
 const useCategories = () => {
   const BASE_URL = 'http://localhost:5000/api/category'
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState<Category[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 

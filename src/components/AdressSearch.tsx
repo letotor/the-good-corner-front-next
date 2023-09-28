@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useAddressSearch from '@/hooks/useFetchAddress' // Importez le hook personnalisé
 import Select from 'react-select'
 
-function AddressSearch() {
+function AddressSearch({ onAddressSelect }) {
   const [selectedAddress, setSelectedAddress] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
   const { addresses, loading, error, fetchAddresses } = useAddressSearch()
@@ -19,6 +19,9 @@ function AddressSearch() {
 
   const handleChange = (selectedOption) => {
     setSelectedAddress(selectedOption)
+    if (selectedOption?.label !== '') {
+      onAddressSelect(selectedOption?.label)
+    }
   }
 
   return (
