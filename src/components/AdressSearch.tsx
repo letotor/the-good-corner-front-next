@@ -3,11 +3,11 @@ import useAddressSearch from '@/hooks/useFetchAddress' // Importez le hook perso
 import Select from 'react-select'
 
 function AddressSearch({ onAddressSelect }) {
-  const [selectedAddress, setSelectedAddress] = useState(null)
+  const [selectedAddress, setSelectedAddress] = useState<string>()
   const [searchQuery, setSearchQuery] = useState('')
   const { addresses, loading, error, fetchAddresses } = useAddressSearch()
 
-  const handleInputChange = (newValue) => {
+  const handleInputChange = (newValue: string) => {
     setSearchQuery(newValue)
     fetchAddresses(newValue) // Envoyer une requête à l'API à chaque changement de texte
   }

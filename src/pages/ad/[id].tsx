@@ -38,7 +38,7 @@ export default function AdCardDetail(props: any) {
         Detail : {ad?.title} - {ad?.price}€
       </h1>
       {ad?.picture?.includes('http') && (
-        <Image
+        <img
           className={styles['ad-card-image']}
           src={ad.picture}
           alt={ad.title ?? 'noTitle'}

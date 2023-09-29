@@ -35,14 +35,14 @@ const AdCard = ({
   }
 
   return (
-    <div className={styles['ad-card-container']}>
+    <div style={{ height: '310px' }} className={styles['ad-card-container']}>
       <Link className={styles['ad-card-link']} href={`ad/${id}`}>
         {picture?.includes('http') && (
           <Image
             className={styles['ad-card-image']}
             src={picture}
             alt={title ?? 'noTitle'}
-            quality={100}
+            // quality={100}
             width="200"
             height="200"
           />

@@ -3,8 +3,13 @@
   border: 1px solid lightgray;
   color: inherit;
   background-color: white;
+  transition: 0.2s all ease-out;
 }
 
+.ad-card-container:hover{
+  transform: scale(1.02);
+  border:1px solid #ffa41b;
+}
 .ad-card-link {
   text-decoration: inherit;
   color: inherit;
@@ -12,6 +17,7 @@
 
 .ad-card-image {
   width: 100%;
+  max-width:'200px';
   border-radius: 8px;
 }
 

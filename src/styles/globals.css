@@ -81,6 +81,14 @@ h1 {
   color: #ffa41b;
   background-color: white;
   cursor: pointer;
+  transition:  0.7s ease-in-out;
+  &:hover{
+    background-color: #ffa41b;
+    color: white;
+    border: 2px solid white;
+    transition: all 0.2s ease-out;
+    transform: scale(1.03);
+  }
 }
 
 .logo {

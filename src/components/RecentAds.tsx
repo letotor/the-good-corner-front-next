@@ -94,29 +94,51 @@ const RecentAds = (): React.ReactNode => {
       <div>Somme totale : {total == 0 ? '' : total} </div>
       <section className={styles['recent-ads']}>
         {ads?.map((ad) => (
-          <div key={ad.id}>
+          <div className="d-flex flex-col" key={ad.id}>
             {/* <pre>{JSON.stringify(ad, 0, null)}</pre> */}
+           
+           
             <AdCard
+       
               title={ad.title}
               category={ad.category}
               location={ad.location}
-              picture={
-                ad.picture
-              }
+              picture={ad.picture}
               link={ad?.link}
               price={ad.price}
               id={ad.id}
               owner={ad.owner}
               dateAtCreated={ad.dateAtCreated}
             />
-            <button
-              id="selected"
-              className="button my-1"
-              onClick={() => ad.price && addPrice(ad.price)}
+            <div
+              className="d-flex"
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
             >
-              {' '}
-              Add price to total{' '}
-            </button>
+              <button
+                style={{
+                  width: '45%',
+                }}
+                id="selected"
+                className="button my-1"
+                onClick={() => ad.price && addPrice(ad.price)}
+              >
+                {' '}
+                Add price to total{' '}
+              </button>
+              <button
+                id="deleteAds"
+                className="button my-1"
+                style={{
+                  width: '45%',
+                }}
+              >
+                {' '}
+                Supprimer{' '}
+              </button>
+            </div>
           </div>
         ))}
       </section>
