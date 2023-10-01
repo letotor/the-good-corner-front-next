@@ -1,13 +1,14 @@
 import Link from 'next/link'
 import styles from './Header.module.css'
 import { Category } from './Category'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FormEvent } from 'react'
 import axios from 'axios'
 
 const Header = (): React.ReactNode => {
   const [categories, setCategories] = useState<Category[]>()
   const BASE_URL = 'http://localhost:5000/api/category'
   const [error, setError] = useState(false)
+  const [searchWord, setSearchWord] = useState('')
   const getCategoriesFromAPI = async () => {
     try {
       const response = await axios.get(BASE_URL)
@@ -27,18 +28,34 @@ const Header = (): React.ReactNode => {
     getCategoriesFromAPI()
   }, [])
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.debug('not yet implemented')
+  }
+
+  useEffect(() => {
+    console.debug('value search', searchWord)
+  }, [searchWord])
+
   return (
-    <header className={styles['heade']}>
+    <header className={styles['header']}>
       <div className="main-menu">
         <h1>
           <Link href="/" className="button logo link-button">
-            <span className="mobile-short-label">TGC</span>
-            <span className="desktop-long-label">THE GOO'D CORNER</span>
+            <span className="mobile-short-label  rainbow-text">TGC</span>
+            <span className="desktop-long-label rainbow-text">
+              THE GOOD CORNER
+            </span>
           </Link>
         </h1>
-        <form className="text-field-with-button">
-          <input className="text-field main-search-field" type="search" />
-          <button className="button button-primary">
+        <form onClick={handleSubmit} className="text-field-with-button">
+          <input
+            className="text-field main-search-field"
+            type="search"
+            onChange={(e) => setSearchWord(e.target.value)}
+            value={searchWord}
+          />
+          <button type="submit" className="button button-primary">
             <svg
               aria-hidden="true"
               width="16"
@@ -53,9 +70,11 @@ const Header = (): React.ReactNode => {
             </svg>
           </button>
         </form>
-        <Link href="/ad/new" className="button link-button">
-          <span className="mobile-short-label">Publier</span>
-          <span className="desktop-long-label">Publier une annonce</span>
+        <Link href="/ad/new" className="button link-button rainbow-text ">
+          <span className="mobile-short-label   rainbow-text">Publier</span>
+          <span className="desktop-long-label  rainbow-text">
+            Publier une annonce
+          </span>
         </Link>
       </div>
       <nav className={styles['categories-navigation']}>

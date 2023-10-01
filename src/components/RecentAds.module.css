@@ -8,3 +8,10 @@
 #selected {
   margin-top: 10px;
 }
+
+.button{
+
+  background-color: #222;
+  border : 1px solid var(--vp-c-brand-dark)
+
+}

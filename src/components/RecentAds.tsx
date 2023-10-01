@@ -79,6 +79,9 @@ const RecentAds = (): React.ReactNode => {
       console.error('error lors de la recuperation des Ads from server')
     }
   }
+  function refreshAds() {
+    getAdsFromAPI()
+  }
 
   useEffect(() => {
     console.log(total)
@@ -96,19 +99,18 @@ const RecentAds = (): React.ReactNode => {
         {ads?.map((ad) => (
           <div className="d-flex flex-col" key={ad.id}>
             {/* <pre>{JSON.stringify(ad, 0, null)}</pre> */}
-           
-           
+
             <AdCard
-       
               title={ad.title}
               category={ad.category}
               location={ad.location}
               picture={ad.picture}
-              link={ad?.link}
+              link={`/ad/${ad.id}`}
               price={ad.price}
               id={ad.id}
               owner={ad.owner}
               dateAtCreated={ad.dateAtCreated}
+              onDelete={refreshAds}
             />
             <div
               className="d-flex"
@@ -117,27 +119,26 @@ const RecentAds = (): React.ReactNode => {
                 justifyContent: 'space-between',
               }}
             >
-              <button
-                style={{
-                  width: '45%',
-                }}
-                id="selected"
-                className="button my-1"
-                onClick={() => ad.price && addPrice(ad.price)}
-              >
-                {' '}
-                Add price to total{' '}
-              </button>
-              <button
-                id="deleteAds"
-                className="button my-1"
-                style={{
-                  width: '45%',
-                }}
-              >
-                {' '}
-                Supprimer{' '}
-              </button>
+              {/* <button */}
+              {/*   style={{ */}
+              {/*     width: '45%', */}
+              {/*   }} */}
+              {/*   id="selected" */}
+              {/*   className={`button ${styles['button']} my-1 rainbow-text`} */}
+              {/*   onClick={() => ad.price && addPrice(ad.price)} */}
+              {/* > */}
+              {/*   <span className="rainbow-text">Add price to total</span> */}
+              {/* </button> */}
+              {/* <button */}
+              {/*   id="deleteAds" */}
+              {/*   className={`button ${styles['button']} my-1 rainbow-text`} */}
+              {/*   style={{ */}
+              {/*     width: '45%', */}
+              {/*   }} */}
+              {/* > */}
+              {/*   {' '} */}
+              {/*   Supprimer{' '} */}
+              {/* </button> */}
             </div>
           </div>
         ))}

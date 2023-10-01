@@ -17,8 +17,11 @@ type AdFormData = {
   owner?: string
 }
 
-const BASE_URL = 'http://localhost:5000/api'
-const NewAd = (): React.ReactNode => {
+type AdFromProps = {
+  ad?:AdType
+}
+
+const AdForm = (props : AdFormProps): React.ReactNode => {
   const [dataForm, setDataForm] = useState<AdFormData>({
     title: '',
     description: undefined,

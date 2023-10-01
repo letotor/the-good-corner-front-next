@@ -1,14 +1,15 @@
 .ad-card-container {
   border-radius: 8px;
-  border: 1px solid lightgray;
+  display: relative;
   color: inherit;
-  background-color: white;
+  background-color: #222;
   transition: 0.2s all ease-out;
+  font-family: var(--vp-font-family-base);
 }
 
-.ad-card-container:hover{
+.ad-card-container:hover {
   transform: scale(1.02);
-  border:1px solid #ffa41b;
+  border: 1px solid var(--vp-c-brand-dark);
 }
 .ad-card-link {
   text-decoration: inherit;
@@ -17,8 +18,8 @@
 
 .ad-card-image {
   width: 100%;
-  max-width:'200px';
-  border-radius: 8px;
+  max-width: '200px';
+  border-radius: 8px 8px 0 0;
 }
 
 .ad-card-text {
@@ -36,10 +37,20 @@
   display: flex;
   flex-direction: column;
 }
+.ad-car-img-category {
+  position: relative;
+}
 .ad-card-category {
-  font-size: 14px;
-  color: #ffa41b;
-  padding: 0px 0px 6px 12px;
+  position: absolute;
+  font-size: 10px;
+  padding: 0 0.2rem;
+  right: 5px;
+  top: 5px;
+  text-align: center;
+  color: var(--vp-c-brand-dark);
+  background-color: #1f1e33;
+  border-radius: 5px;
+  border: 1px dotted var(--vp-c-brand-dark);
 }
 .ad-details-image-container {
   margin-inline-start: -24px;
@@ -74,4 +85,26 @@
 
 .ad-details-price {
   font-weight: bold;
+}
+.button {
+  background-color: #222;
+  border: 1px solid var(--vp-c-brand-dark);
+  border-radius: 7px;
+  font-size: small;
+  color: var(--vp-c-brand-dark);
+  transition: 0.2s all ease-out;
+  padding: 0.5rem;
+}
+.button:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+  color: white;
+  background-color: var(--vp-c-brand-dark);
+  border: 1px solid white;
+}
+.btn-group {
+  display: flex;
+  gap: 10x;
+  justify-content: space-evenly;
+  padding: 1rem 0;
 }

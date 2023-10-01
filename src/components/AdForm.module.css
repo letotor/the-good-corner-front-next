@@ -1,0 +1,43 @@
+
+.form-container{
+    display: flex;
+}
+
+.form-img{
+   display:flex;
+   justify-content: center;
+   width: 50%; 
+   height: auto;
+   overflow: hidden;
+   border-radius : 7px;
+
+}
+
+
+.btn-submit{
+    width:100%;
+}
+
+.form-ad {  
+    max-width: auto;
+   flex:1;
+  }
+  
+@media screen and (max-width: 720px) {
+  
+.form-container{
+    display: flex;
+    flex-direction :column;
+    row-gap:2rem;
+
+}
+
+.form-img{
+    display:flex;
+    justify-content: center;
+    width: 100%; 
+    height: auto;
+    overflow: hidden;
+    border-radius : 7px;
+ }
+}

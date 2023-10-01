@@ -5,6 +5,7 @@ import styles from '@/components/AdCard.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
+import AdCard from '@/components/AdCard'
 const Ads = () => {
   type AdCardProps = {
     id: number
@@ -57,7 +58,8 @@ const Ads = () => {
       {/* <div>{JSON.stringify(adsByCategory, 0, 2)}</div> */}
       {adsByCategory?.map((ads) => (
         <>
-          <div>{ads?.title}</div>
+        <AdCard/>
+          {/* <div>{ads?.title}</div>
 
           <div className={styles['ad-card-container']}>
             {ads.picture?.includes('http') && (
@@ -78,7 +80,7 @@ const Ads = () => {
                 <div className={styles['ad-card-price']}>{ads.price} €</div>
               </div>
             </div>
-          </div>
+          </div> */}
         </>
       ))}
     </Layout>

@@ -1,19 +1,18 @@
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    border-bottom: 1px solid lightgray;
-    padding: 10px;
-    background-color: white;
-  }
-  .categories-navigation {
-    font-size: 12px;
-    font-weight: bold;
-    color: #666;
-    padding: 16px 10px 6px;
-    white-space: nowrap;
-    overflow-x: scroll;
-  }
-
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid lightgray;
+  padding: 10px;
+  background-color: #333;
+  z-index: 999;
+}
+.categories-navigation {
+  font-size: 12px;
+  font-weight: bold;
+  color: #bab9b9;
+  padding: 16px 10px 6px;
+  white-space: nowrap;
+  overflow-x: scroll;
+}

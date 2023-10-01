@@ -28,6 +28,17 @@ function AddressSearch({ onAddressSelect }) {
     <div>
       <Select
         value={selectedAddress}
+        theme={(theme) => ({
+          ...theme,
+          borderRadius: 0,
+          background: 'black',
+          colors: {
+            ...theme.colors,
+            text: ` var(--vp-c-brand-darker)`,
+            primary25: ` var(--vp-c-brand-darker)`,
+            primary: ` var(--vp-c-brand-darker)`,
+          },
+        })}
         options={options}
         onInputChange={handleInputChange}
         onChange={handleChange}
