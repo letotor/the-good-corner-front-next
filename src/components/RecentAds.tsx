@@ -69,18 +69,19 @@ const RecentAds = (): React.ReactNode => {
   }
 
   const [ads, setAds] = useState<Partial<AdCardProps>[]>()
-  const getAdsFromAPI = async () => {
-    try {
-      const response = await axios.get(BASE_URL)
-      const data = response.data
 
-      setAds(data)
-    } catch {
-      console.error('error lors de la recuperation des Ads from server')
-    }
-  }
+  // const getAdsFromAPI = async () => {
+  //   try {
+  //     const response = await axios.get(BASE_URL)
+  //     const data = response.data
+
+  //     setAds(data)
+  //   } catch {
+  //     console.error('error lors de la recuperation des Ads from server')
+  //   }
+  // }
   function refreshAds() {
-    getAdsFromAPI()
+   // getAdsFromAPI()
   }
 
   useEffect(() => {
@@ -88,7 +89,7 @@ const RecentAds = (): React.ReactNode => {
   }, [total])
 
   useEffect(() => {
-    getAdsFromAPI()
+    //getAdsFromAPI()
   }, [])
 
   return (

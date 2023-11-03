@@ -2,30 +2,51 @@ import Link from 'next/link'
 import styles from './Header.module.css'
 import { Category } from './Category'
 import { useState, useEffect, FormEvent } from 'react'
-import axios from 'axios'
+import { gql, useQuery } from '@apollo/client'
+// import axios from 'axios'
 
-const Header = (): React.ReactNode => {
-  const [categories, setCategories] = useState<Category[]>()
-  const BASE_URL = 'http://localhost:5000/api/category'
-  const [error, setError] = useState(false)
-  const [searchWord, setSearchWord] = useState('')
-  const getCategoriesFromAPI = async () => {
-    try {
-      const response = await axios.get(BASE_URL)
-      const data = response.data
-
-      setCategories(data)
-    } catch {
-      console.error('error lors de la recuperation des cat from server')
+const queryAllcategories = gql`
+  query category {
+    allCategory {
+      id
+      name
     }
   }
+`
+
+const Header = (): React.ReactNode => {
+  // const BASE_URL = 'http://localhost:5000/api/category'
+  // const [error, setError] = useState(false)
+  const [searchWord, setSearchWord] = useState('')
+
+  //const [categories, setCategories] = useState<Category[]>()
+  console.debug('----')
+  const { data, loading, error } = useQuery<{ items: Category[] }>(
+    queryAllcategories,
+    {
+      fetchPolicy: 'network-only',
+    },
+  )
+  console.error('error', error)
+  const categories: Category[] = []
+
+  // const getCategoriesFromAPI = async () => {
+  //   try {
+  //     const response = await axios.get(BASE_URL)
+  //     const data = response.data
+
+  //     setCategories(data)
+  //   } catch {
+  //     console.error('error lors de la recuperation des cat from server')
+  //   }
+  // }
 
   useEffect(() => {
     console.log(categories)
   }, [categories])
 
   useEffect(() => {
-    getCategoriesFromAPI()
+    // getCategoriesFromAPI()
   }, [])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

@@ -6,6 +6,24 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import AdCard from '@/components/AdCard'
+import { useQuery, gql } from '@apollo/client'
+
+// const All_ads = gql`
+//   query GetAds {
+//     launches(limit: 5) {
+//       launch_date_utc
+//       launch_success
+//       rocket {
+//         rocket_name
+//       }
+//       links {
+//         video_link
+//       }
+//       details
+//     }
+//   }
+// `
+
 const Ads = () => {
   type AdCardProps = {
     id: number
@@ -22,6 +40,8 @@ const Ads = () => {
   const router = useRouter()
   const [adsByCategory, setAdsByCategory] = useState<Partial<AdCardProps>[]>()
   const BASE_URL = `http://localhost:5000/api/ads/`
+
+  // const { loading, error, data } = useQuery(GetAds)
 
   const getAdsByIdFromAPI = async (categoryIdFilter: number) => {
     try {
@@ -58,7 +78,7 @@ const Ads = () => {
       {/* <div>{JSON.stringify(adsByCategory, 0, 2)}</div> */}
       {adsByCategory?.map((ads) => (
         <>
-        <AdCard/>
+          <AdCard />
           {/* <div>{ads?.title}</div>
 
           <div className={styles['ad-card-container']}>

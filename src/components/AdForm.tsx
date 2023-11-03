@@ -6,6 +6,7 @@ import { Category } from '@/components/Category'
 import useCategories from '@/hooks/useFetch'
 import AddressSearch from '@/components/AdressSearch'
 import styles from '@/components/AdForm.module.css'
+import { AdCardType } from './AdCard'
 
 type AdFormData = {
   title?: string
@@ -17,11 +18,10 @@ type AdFormData = {
   owner?: string
 }
 
-type AdFromProps = {
-  ad?:AdType
+type AdFormProps = {
+  ad?: AdCardType
 }
-
-const AdForm = (props : AdFormProps): React.ReactNode => {
+export const AdForm = (props: AdFormProps): React.ReactNode => {
   const [dataForm, setDataForm] = useState<AdFormData>({
     title: '',
     description: undefined,
@@ -31,6 +31,8 @@ const AdForm = (props : AdFormProps): React.ReactNode => {
     picture: undefined,
     owner: undefined,
   })
+
+  const BASE_URL = 'http://localhost:5000/api'
   const { categories, loading, error: errorCategories } = useCategories()
 
   const [selectedResultAdress, setSelectedResultAdress] = useState('')
@@ -172,135 +174,138 @@ const AdForm = (props : AdFormProps): React.ReactNode => {
         className="ad my-1"
       >{`Publier une Annonce`}</h1>
       <div className={`${styles['form-container']}`}>
-
-  
-      <form className={`form-ad ${styles['form-ad']}`} onSubmit={handleSubmitAd}>
-        <div className="flex-col">
-          <div className="">
-            <label htmlFor="title">Title </label>
-            <input
-              className="text-field"
-              id="title"
-              type="text"
-              onChange={(e) =>
-                setDataForm({ ...dataForm, title: e.target.value })
-              }
-              value={dataForm.title}
-              name="title"
-            />
-          </div>
-          <div className="">
-            <label htmlFor="description">Description </label>
-            <textarea
-              className="text-field"
-              id="description"
-              maxLength={150}
-              onChange={(e) =>
-                setDataForm({
-                  ...dataForm,
-                  description: e.target.value,
-                })
-              }
-              style={{
-                width: '100%',
-                height: '100px',
-                resize: 'vertical',
-              }}
-              value={dataForm.description}
-              name="title"
-            />
-          </div>
-          <div>
-            <label htmlFor="price"> Price </label>
-            <input
-              className="text-field"
-              id="price"
-              type="text"
-              onChange={(e) =>
-                setDataForm({
-                  ...dataForm,
-                  price: Number.isNaN(Number(e.target.value))
-                    ? 0
-                    : Number(e.target.value),
-                })
-              }
-              value={Number.isNaN(dataForm.price) ? 0 : dataForm.price}
-            />
-          </div>
-          <div>
-            <label htmlFor="picture">Image</label>
-            <input
-              className="text-field"
-              id="picture"
-              name="picture"
-              type="text"
-              onChange={(e) =>
-                setDataForm({ ...dataForm, picture: e.target.value })
-              }
-              value={dataForm.picture}
-            />
-          </div>
-          <div>
-            <label htmlFor="location">Location</label>
-            <AddressSearch onAddressSelect={handleAddressSelect} />
-          </div>
-          <div>
-            <label htmlFor="owner">Name</label>
-            <input
-              className="text-field"
-              id="owner"
-              type="text"
-              name="owner"
-              onChange={(e) =>
-                setDataForm({ ...dataForm, owner: e.target.value })
-              }
-              value={dataForm.owner}
-            />
-          </div>
-          <div>
-            <label htmlFor="categoryId">Choisir une catégorie :</label>
-            <select
-              id="categoryId"
-              name="categoryId"
-              onChange={(e) =>
-                setDataForm({
-                  ...dataForm,
-                  category: { id: Number(e.target.value) },
-                })
-              }
-              value={dataForm.category?.id || 1}
-            >
-              {!errorCategories &&
-                !loading &&
-                categories.map((cat: Category) => (
-                  <>
-                    <option key={cat.id} value={cat.id}>
-                      {cat.name}
-                    </option>
-                  </>
-                ))}
-            </select>
-          </div>
-        </div>
-
-        <div className={`${styles['form-footer']}`}>
-          <p style={{ fontSize: '12px', color: 'red' }}>
-            {error ? `error on ${error}` : ' '}
-          </p>
-        </div>
-
-        <button
-          className={`button  button-primary ${styles['btn-submit']}`}
-          type="submit"
+        <form
+          className={`form-ad ${styles['form-ad']}`}
+          onSubmit={handleSubmitAd}
         >
-          {' '}
-          Envoyer
-        </button>
-      </form>
+          <div className="flex-col">
+            <div className="">
+              <label htmlFor="title">Title </label>
+              <input
+                className="text-field"
+                id="title"
+                type="text"
+                onChange={(e) =>
+                  setDataForm({ ...dataForm, title: e.target.value })
+                }
+                value={dataForm.title}
+                name="title"
+              />
+            </div>
+            <div className="">
+              <label htmlFor="description">Description </label>
+              <textarea
+                className="text-field"
+                id="description"
+                maxLength={150}
+                onChange={(e) =>
+                  setDataForm({
+                    ...dataForm,
+                    description: e.target.value,
+                  })
+                }
+                style={{
+                  width: '100%',
+                  height: '100px',
+                  resize: 'vertical',
+                }}
+                value={dataForm.description}
+                name="title"
+              />
+            </div>
+            <div>
+              <label htmlFor="price"> Price </label>
+              <input
+                className="text-field"
+                id="price"
+                type="text"
+                onChange={(e) =>
+                  setDataForm({
+                    ...dataForm,
+                    price: Number.isNaN(Number(e.target.value))
+                      ? 0
+                      : Number(e.target.value),
+                  })
+                }
+                value={Number.isNaN(dataForm.price) ? 0 : dataForm.price}
+              />
+            </div>
+            <div>
+              <label htmlFor="picture">Image</label>
+              <input
+                className="text-field"
+                id="picture"
+                name="picture"
+                type="text"
+                onChange={(e) =>
+                  setDataForm({ ...dataForm, picture: e.target.value })
+                }
+                value={dataForm.picture}
+              />
+            </div>
+            <div>
+              <label htmlFor="location">Location</label>
+              <AddressSearch onAddressSelect={handleAddressSelect} />
+            </div>
+            <div>
+              <label htmlFor="owner">Name</label>
+              <input
+                className="text-field"
+                id="owner"
+                type="text"
+                name="owner"
+                onChange={(e) =>
+                  setDataForm({ ...dataForm, owner: e.target.value })
+                }
+                value={dataForm.owner}
+              />
+            </div>
+            <div>
+              <label htmlFor="categoryId">Choisir une catégorie :</label>
+              <select
+                id="categoryId"
+                name="categoryId"
+                onChange={(e) =>
+                  setDataForm({
+                    ...dataForm,
+                    category: { id: Number(e.target.value) },
+                  })
+                }
+                value={dataForm.category?.id || 1}
+              >
+                {!errorCategories &&
+                  !loading &&
+                  categories.map((cat: Category) => (
+                    <>
+                      <option key={cat.id} value={cat.id}>
+                        {cat.name}
+                      </option>
+                    </>
+                  ))}
+              </select>
+            </div>
+          </div>
 
-      <img className={`${styles['form-img']}`} src="https://cdn.pixabay.com/photo/2023/09/18/13/46/beach-8260614_1280.jpg"></img>
+          <div className={`${styles['form-footer']}`}>
+            <p style={{ fontSize: '12px', color: 'red' }}>
+              {error ? `error on ${error}` : ' '}
+            </p>
+          </div>
+
+          <button
+            className={`button  button-primary ${styles['btn-submit']}`}
+            type="submit"
+          >
+            {' '}
+            Envoyer
+          </button>
+        </form>
+
+        <img
+          className={`${styles['form-img']}`}
+          src="https://cdn.pixabay.com/photo/2023/09/18/13/46/beach-8260614_1280.jpg"
+        ></img>
       </div>
     </Layout>
   )
 }
-export default NewAd
