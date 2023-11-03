@@ -5,9 +5,11 @@ import { useState, useEffect, FormEvent } from 'react'
 import { gql, useQuery } from '@apollo/client'
 // import axios from 'axios'
 
+
+// items:  est un alias
 const queryAllcategories = gql`
   query category {
-    allCategory {
+    items : allCategory { 
       id
       name
     }
@@ -28,18 +30,7 @@ const Header = (): React.ReactNode => {
     },
   )
   console.error('error', error)
-  const categories: Category[] = []
-
-  // const getCategoriesFromAPI = async () => {
-  //   try {
-  //     const response = await axios.get(BASE_URL)
-  //     const data = response.data
-
-  //     setCategories(data)
-  //   } catch {
-  //     console.error('error lors de la recuperation des cat from server')
-  //   }
-  // }
+  const categories: Category[] = data ? data.items : []
 
   useEffect(() => {
     console.log(categories)
